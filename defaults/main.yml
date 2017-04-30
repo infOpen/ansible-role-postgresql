@@ -17,3 +17,7 @@ postgresql_version: "{{ _postgresql_version }}"
 
 # Service management
 postgresql_services: "{{ _postgresql_services }}"
+
+# User management
+postgresql_users: "{{ _postgresql_users }}"
+postgresql_groups: "{{ _postgresql_groups }}"

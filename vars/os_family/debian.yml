@@ -17,6 +17,15 @@ _postgresql_packages:
   - name: "postgresql-client-common"
   - name: "postgresql-contrib-{{ postgresql_version }}"
 
+# Users and groups management
+_postgresql_users:
+  - name: 'postgres'
+    group: 'postgres'
+    home: '/var/lib/postgresql'
+    shell: '/bin/bash'
+_postgresql_groups:
+  - name: 'postgres'
+
 # Service management
 _postgresql_services:
   - name: 'postgresql'
