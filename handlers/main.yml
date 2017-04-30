@@ -1,3 +1,11 @@
 ---
 
 # Handlers main file for postgresql role
+
+- name: 'HANDLER | PostgreSQL restart'
+  become: True
+  service:
+    name: "{{ item.name }}"
+    state: 'restarted'
+  with_items: "{{ postgresql_services }}"
+  when: "(item.state | default('started')) == 'started'"

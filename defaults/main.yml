@@ -1,3 +1,19 @@
 ---
 
 # Defaults vars file for postgresql role
+
+# Repositories management
+postgresql_cache_valid_time: 3600
+postgresql_gpg_keys: "{{ _postgresql_gpg_keys }}"
+postgresql_repositories: "{{ _postgresql_package_repositories }}"
+postgresql_use_upstream: False
+
+# Package management
+postgresql_packages: "{{ _postgresql_packages }}"
+postgresql_system_prerequisites: "{{ _postgresql_system_prerequisites }}"
+
+# General
+postgresql_version: "{{ _postgresql_version }}"
+
+# Service management
+postgresql_services: "{{ _postgresql_services }}"

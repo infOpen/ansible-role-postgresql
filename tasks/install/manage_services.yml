@@ -1,0 +1,10 @@
+---
+
+# Manage services tasks
+
+- name: 'INSTALL | SERVICES | Manage PostgreSQL services'
+  service:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('started') }}"
+    enabled: "{{ item.enabled | default(True) }}"
+  with_items: "{{ postgresql_services }}"

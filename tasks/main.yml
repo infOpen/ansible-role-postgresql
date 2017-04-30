@@ -7,3 +7,19 @@
   tags:
     - 'role::postgresql'
     - 'role::postgresql::init'
+
+
+- name: 'INSTALL | Manage Postgresql installation tasks'
+  include: "{{ role_path }}/tasks/install/{{ ansible_os_family | lower }}_family.yml"
+  become: True
+  tags:
+    - 'role::postgresql'
+    - 'role::postgresql::install'
+
+
+- name: 'INSTALL | Manage Postgresql services tasks'
+  include: "{{ role_path }}/tasks/install/manage_services.yml"
+  become: True
+  tags:
+    - 'role::postgresql'
+    - 'role::postgresql::install'

@@ -1,0 +1,5 @@
+---
+
+# Ubuntu Xenial specific variables
+
+_postgresql_version: '9.5'
