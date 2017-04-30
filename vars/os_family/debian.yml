@@ -15,6 +15,7 @@ _postgresql_packages:
   - name: "postgresql-common"
   - name: "postgresql-client-{{ postgresql_version }}"
   - name: "postgresql-client-common"
+  - name: "postgresql-contrib-{{ postgresql_version }}"
 
 # Service management
 _postgresql_services:

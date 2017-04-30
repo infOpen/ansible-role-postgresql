@@ -33,7 +33,8 @@ def test_packages(host):
             'postgresql-{}'.format(postgresql_version),
             'postgresql-common',
             'postgresql-client-{}'.format(postgresql_version),
-            'postgresql-client-common'
+            'postgresql-client-common',
+            'postgresql-contrib-{}'.format(postgresql_version),
         ]
 
     for package in packages:
