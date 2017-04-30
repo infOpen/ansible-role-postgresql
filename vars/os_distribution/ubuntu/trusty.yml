@@ -1,0 +1,5 @@
+---
+
+# Ubuntu Trusty specific variables
+
+_postgresql_version: '9.3'

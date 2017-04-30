@@ -1,0 +1,21 @@
+---
+
+# Specific vars for Debian family
+#------------------------------------------------------------------------------
+
+# Package management
+_postgresql_gpg_keys:
+  - url: "https://www.postgresql.org/media/keys/ACCC4CF8.asc"
+_postgresql_package_repositories:
+  - repo: "deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release | lower }}-pgdg main"
+_postgresql_system_prerequisites:
+  - name: 'ca-certificates'
+_postgresql_packages:
+  - name: "postgresql-{{ postgresql_version }}"
+  - name: "postgresql-common"
+  - name: "postgresql-client-{{ postgresql_version }}"
+  - name: "postgresql-client-common"
+
+# Service management
+_postgresql_services:
+  - name: 'postgresql'

@@ -30,13 +30,13 @@ molecule:
     - '.vagrant'
 vagrant:
   platforms:
-    - name: 'jessie64'
+    - name: 'jessie'
       box: 'debian/jessie64'
       linked_clone: True
-    - name: 'trusty64'
+    - name: 'trusty'
       box: 'ubuntu/trusty64'
       linked_clone: True
-    - name: 'xenial64'
+    - name: 'xenial'
       box: 'ubuntu/xenial64'
       linked_clone: True
   providers:

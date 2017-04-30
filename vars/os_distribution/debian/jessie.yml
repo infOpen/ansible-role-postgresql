@@ -1,0 +1,5 @@
+---
+
+# Debian Jessie specific variables
+
+_postgresql_version: '9.4'

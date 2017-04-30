@@ -2,7 +2,7 @@
 
 # Role tests
 
-- hosts: 'postgresql-vagrant-xenial64:postgresql-docker-xenial'
+- hosts: 'postgresql-vagrant-xenial:postgresql-docker-xenial'
   name: 'Install tests prerequisites'
   gather_facts: False
   tasks:
