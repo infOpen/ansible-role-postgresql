@@ -9,3 +9,6 @@
     state: 'restarted'
   with_items: "{{ postgresql_services }}"
   when: "(item.state | default('started')) == 'started'"
+  tags:
+    - 'role::postgresql'
+    - 'role::postgresql::install'
