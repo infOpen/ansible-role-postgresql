@@ -11,4 +11,5 @@
   when: "(item.state | default('started')) == 'started'"
   tags:
     - 'role::postgresql'
+    - 'role::postgresql::config'
     - 'role::postgresql::install'

@@ -31,3 +31,11 @@
   tags:
     - 'role::postgresql'
     - 'role::postgresql::config'
+
+
+- name: 'CONFIG | Manage Postgresql configuration files tasks'
+  include: "{{ role_path }}/tasks/config/manage_config_files.yml"
+  become: True
+  tags:
+    - 'role::postgresql'
+    - 'role::postgresql::config'

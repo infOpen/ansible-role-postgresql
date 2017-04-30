@@ -29,3 +29,11 @@ _postgresql_groups:
 # Service management
 _postgresql_services:
   - name: 'postgresql'
+
+# Paths
+_postgresql_paths:
+  config_file_main:
+    path: "/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf"
+    owner: "{{ postgresql_users[0].name }}"
+    group: "{{ postgresql_groups[0].name }}"
+    mode: '0644'

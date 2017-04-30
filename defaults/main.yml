@@ -15,9 +15,15 @@ postgresql_system_prerequisites: "{{ _postgresql_system_prerequisites }}"
 # General
 postgresql_version: "{{ _postgresql_version }}"
 
+# Paths
+postgresql_paths: "{{ _postgresql_paths }}"
+
 # Service management
 postgresql_services: "{{ _postgresql_services }}"
 
 # User management
 postgresql_users: "{{ _postgresql_users }}"
 postgresql_groups: "{{ _postgresql_groups }}"
+
+# Configuration
+postgresql_config_main_entries: "{{ _postgresql_config_main_entries }}"
