@@ -6,7 +6,7 @@
 _postgresql_version: '9.3'
 
 # Configuration
-_postgresql_config_main_entries:
+_postgresql_config_main:
   data_directory: '/var/lib/postgresql/9.3/main'
   hba_file: '/etc/postgresql/9.3/main/pg_hba.conf'
   ident_file: '/etc/postgresql/9.3/main/pg_ident.conf'

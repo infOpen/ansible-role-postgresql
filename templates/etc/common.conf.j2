@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 
-{% for key, value in postgresql_config_main_entries.iteritems() %}
+{% for key, value in config_items.iteritems() %}
 {% if (value | match('^\d+$')) or (value in ['true', 'false']) %}
 {{ key }} = {{ value }}
 {% else %}

@@ -26,4 +26,4 @@ postgresql_users: "{{ _postgresql_users }}"
 postgresql_groups: "{{ _postgresql_groups }}"
 
 # Configuration
-postgresql_config_main_entries: "{{ _postgresql_config_main_entries }}"
+postgresql_config_main: "{{ _postgresql_config_main }}"

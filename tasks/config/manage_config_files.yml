@@ -5,9 +5,11 @@
 
 - name: 'CONFIG | Manage main configuration file'
   template:
-    src: "{{ role_path }}/templates/etc/postgresql.conf.j2"
-    dest: "{{ postgresql_paths.config_file_main.path }}"
-    owner: "{{ postgresql_paths.config_file_main.owner }}"
-    group: "{{ postgresql_paths.config_file_main.group }}"
-    mode: "{{ postgresql_paths.config_file_main.mode }}"
+    src: "{{ role_path }}/templates/etc/common.conf.j2"
+    dest: "{{ postgresql_paths.config_files.main.path }}"
+    owner: "{{ postgresql_paths.config_files.main.owner }}"
+    group: "{{ postgresql_paths.config_files.main.group }}"
+    mode: "{{ postgresql_paths.config_files.main.mode }}"
   notify: 'HANDLER | PostgreSQL restart'
+  vars:
+    config_items: "{{ postgresql_config_main }}"
