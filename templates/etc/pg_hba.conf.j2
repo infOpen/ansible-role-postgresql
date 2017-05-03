@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+
+{% for item in postgresql_config_pg_hba %}
+{{ item.type }} {{ item.databases }} {{ item.user }} {{ item.address | default('') }} {{ item.method }} {{ item.options | default('') }}
+{% endfor %}

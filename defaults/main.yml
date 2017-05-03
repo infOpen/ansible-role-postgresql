@@ -30,4 +30,5 @@ postgresql_config_environment: {}
 postgresql_config_main: "{{ _postgresql_config_main }}"
 postgresql_config_pg_ctl:
   pg_ctl_options: ''
+postgresql_config_pg_hba: "{{ _postgresql_config_pg_hba }}"
 postgresql_config_start: 'auto'

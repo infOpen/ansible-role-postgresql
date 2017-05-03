@@ -47,3 +47,13 @@
     group: "{{ postgresql_paths.config_files.start.group }}"
     mode: "{{ postgresql_paths.config_files.start.mode }}"
   notify: 'HANDLER | PostgreSQL restart'
+
+
+- name: 'CONFIG | Manage pg_hba configuration file'
+  template:
+    src: "{{ role_path }}/templates/etc/pg_hba.conf.j2"
+    dest: "{{ postgresql_paths.config_files.pg_hba.path }}"
+    owner: "{{ postgresql_paths.config_files.pg_hba.owner }}"
+    group: "{{ postgresql_paths.config_files.pg_hba.group }}"
+    mode: "{{ postgresql_paths.config_files.pg_hba.mode }}"
+  notify: 'HANDLER | PostgreSQL restart'
