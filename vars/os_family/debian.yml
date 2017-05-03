@@ -55,6 +55,11 @@ _postgresql_paths:
       owner: "{{ postgresql_users[0].name }}"
       group: "{{ postgresql_groups[0].name }}"
       mode: '0640'
+    pg_ident:
+      path: "/etc/postgresql/{{ postgresql_version }}/main/pg_ident.conf"
+      owner: "{{ postgresql_users[0].name }}"
+      group: "{{ postgresql_groups[0].name }}"
+      mode: '0640'
     start:
       path: "/etc/postgresql/{{ postgresql_version }}/main/start.conf"
       owner: "{{ postgresql_users[0].name }}"

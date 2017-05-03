@@ -57,3 +57,13 @@
     group: "{{ postgresql_paths.config_files.pg_hba.group }}"
     mode: "{{ postgresql_paths.config_files.pg_hba.mode }}"
   notify: 'HANDLER | PostgreSQL restart'
+
+
+- name: 'CONFIG | Manage pg_ident configuration file'
+  template:
+    src: "{{ role_path }}/templates/etc/pg_ident.conf.j2"
+    dest: "{{ postgresql_paths.config_files.pg_ident.path }}"
+    owner: "{{ postgresql_paths.config_files.pg_ident.owner }}"
+    group: "{{ postgresql_paths.config_files.pg_ident.group }}"
+    mode: "{{ postgresql_paths.config_files.pg_ident.mode }}"
+  notify: 'HANDLER | PostgreSQL restart'
