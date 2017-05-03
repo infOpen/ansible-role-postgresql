@@ -10,6 +10,8 @@ _postgresql_package_repositories:
   - repo: "deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release | lower }}-pgdg main"
 _postgresql_system_prerequisites:
   - name: 'ca-certificates'
+  - name: 'locales'
+  - name: 'python-psycopg2'
 _postgresql_packages:
   - name: "postgresql-{{ postgresql_version }}"
   - name: "postgresql-common"
@@ -33,8 +35,23 @@ _postgresql_services:
 # Paths
 _postgresql_paths:
   config_files:
+    environment:
+      path: "/etc/postgresql/{{ postgresql_version }}/main/environment"
+      owner: "{{ postgresql_users[0].name }}"
+      group: "{{ postgresql_groups[0].name }}"
+      mode: '0644'
     main:
       path: "/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf"
+      owner: "{{ postgresql_users[0].name }}"
+      group: "{{ postgresql_groups[0].name }}"
+      mode: '0644'
+    pg_ctl:
+      path: "/etc/postgresql/{{ postgresql_version }}/main/pg_ctl.conf"
+      owner: "{{ postgresql_users[0].name }}"
+      group: "{{ postgresql_groups[0].name }}"
+      mode: '0644'
+    start:
+      path: "/etc/postgresql/{{ postgresql_version }}/main/start.conf"
       owner: "{{ postgresql_users[0].name }}"
       group: "{{ postgresql_groups[0].name }}"
       mode: '0644'

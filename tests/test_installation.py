@@ -6,7 +6,7 @@ from testinfra.utils.ansible_runner import AnsibleRunner
 
 testinfra_hosts = AnsibleRunner('.molecule/ansible_inventory').get_hosts('all')
 
-POSTGRESQL_VERSION = {
+PG_VERSION = {
     'debian': {
         'jessie': '9.4',
     },
@@ -25,16 +25,18 @@ def test_packages(host):
     packages = []
     os_distribution = host.system_info.distribution
     os_codename = host.system_info.codename
-    postgresql_version = POSTGRESQL_VERSION[os_distribution][os_codename]
+    pg_version = PG_VERSION[os_distribution][os_codename]
 
     if host.system_info.distribution in ('debian', 'ubuntu'):
         packages = [
             'ca-certificates',
-            'postgresql-{}'.format(postgresql_version),
+            'locales',
+            'postgresql-{}'.format(pg_version),
             'postgresql-common',
-            'postgresql-client-{}'.format(postgresql_version),
+            'postgresql-client-{}'.format(pg_version),
             'postgresql-client-common',
-            'postgresql-contrib-{}'.format(postgresql_version),
+            'postgresql-contrib-{}'.format(pg_version),
+            'python-psycopg2',
         ]
 
     for package in packages:
@@ -68,3 +70,33 @@ def test_user(host):
         assert host.user('postgres').group == 'postgres'
         assert host.user('postgres').home == '/var/lib/postgresql'
         assert host.user('postgres').shell == '/bin/bash'
+
+
+def test_config_files(host):
+    """
+    Check if configuration files exists
+    """
+
+    config_files = []
+    os_distribution = host.system_info.distribution
+    os_codename = host.system_info.codename
+    pg_version = PG_VERSION[os_distribution][os_codename]
+
+    if host.system_info.distribution in ('debian', 'ubuntu'):
+        config_files = [
+            '/etc/postgresql/{}/main/environment'.format(pg_version),
+            '/etc/postgresql/{}/main/pg_ctl.conf'.format(pg_version),
+            '/etc/postgresql/{}/main/pg_hba.conf'.format(pg_version),
+            '/etc/postgresql/{}/main/pg_ident.conf'.format(pg_version),
+            '/etc/postgresql/{}/main/postgresql.conf'.format(pg_version),
+            '/etc/postgresql/{}/main/start.conf'.format(pg_version),
+        ]
+
+    for config_file in config_files:
+        assert host.file(config_file).exists
+        assert host.file(config_file).user == 'postgres'
+        assert host.file(config_file).group == 'postgres'
+        if 'ident' in config_file or 'hba' in config_file:
+            assert host.file(config_file).mode == 0o640
+        else:
+            assert host.file(config_file).mode == 0o644

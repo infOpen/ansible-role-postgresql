@@ -26,4 +26,8 @@ postgresql_users: "{{ _postgresql_users }}"
 postgresql_groups: "{{ _postgresql_groups }}"
 
 # Configuration
+postgresql_config_environment: {}
 postgresql_config_main: "{{ _postgresql_config_main }}"
+postgresql_config_pg_ctl:
+  pg_ctl_options: ''
+postgresql_config_start: 'auto'

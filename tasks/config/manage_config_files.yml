@@ -3,6 +3,18 @@
 # PostgreSQL configuration files management
 #------------------------------------------------------------------------------
 
+- name: 'CONFIG | Manage environment configuration file'
+  template:
+    src: "{{ role_path }}/templates/etc/common.conf.j2"
+    dest: "{{ postgresql_paths.config_files.environment.path }}"
+    owner: "{{ postgresql_paths.config_files.environment.owner }}"
+    group: "{{ postgresql_paths.config_files.environment.group }}"
+    mode: "{{ postgresql_paths.config_files.environment.mode }}"
+  notify: 'HANDLER | PostgreSQL restart'
+  vars:
+    config_items: "{{ postgresql_config_environment }}"
+
+
 - name: 'CONFIG | Manage main configuration file'
   template:
     src: "{{ role_path }}/templates/etc/common.conf.j2"
@@ -13,3 +25,25 @@
   notify: 'HANDLER | PostgreSQL restart'
   vars:
     config_items: "{{ postgresql_config_main }}"
+
+
+- name: 'CONFIG | Manage pg_ctl configuration file'
+  template:
+    src: "{{ role_path }}/templates/etc/common.conf.j2"
+    dest: "{{ postgresql_paths.config_files.pg_ctl.path }}"
+    owner: "{{ postgresql_paths.config_files.pg_ctl.owner }}"
+    group: "{{ postgresql_paths.config_files.pg_ctl.group }}"
+    mode: "{{ postgresql_paths.config_files.pg_ctl.mode }}"
+  notify: 'HANDLER | PostgreSQL restart'
+  vars:
+    config_items: "{{ postgresql_config_pg_ctl }}"
+
+
+- name: 'CONFIG | Manage start configuration file'
+  template:
+    src: "{{ role_path }}/templates/etc/start.conf.j2"
+    dest: "{{ postgresql_paths.config_files.start.path }}"
+    owner: "{{ postgresql_paths.config_files.start.owner }}"
+    group: "{{ postgresql_paths.config_files.start.group }}"
+    mode: "{{ postgresql_paths.config_files.start.mode }}"
+  notify: 'HANDLER | PostgreSQL restart'
