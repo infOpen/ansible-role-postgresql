@@ -1,6 +1,10 @@
 ---
 
 # Defaults vars file for postgresql role
+#==============================================================================
+
+# PostgreSQL installation
+#------------------------------------------------------------------------------
 
 # Repositories management
 postgresql_cache_valid_time: 3600
@@ -25,11 +29,25 @@ postgresql_services: "{{ _postgresql_services }}"
 postgresql_users: "{{ _postgresql_users }}"
 postgresql_groups: "{{ _postgresql_groups }}"
 
-# Configuration
+
+# PostgreSQL configuration
+#------------------------------------------------------------------------------
+
+# Environment
 postgresql_config_environment: {}
+
+# Main configuration file
 postgresql_config_main: "{{ _postgresql_config_main }}"
+
+# pg_ctl
 postgresql_config_pg_ctl:
   pg_ctl_options: ''
+
+# Client authentication
 postgresql_config_pg_hba: "{{ _postgresql_config_pg_hba }}"
+
+# User name maps
 postgresql_config_pg_ident: []
+
+# Startup configuration
 postgresql_config_start: 'auto'
