@@ -49,7 +49,7 @@ postgresql_config_pg_hba:
     databases: 'all'
     user: 'postgres'
     address: ''
-    method: 'peer'
+    method: 'peer map=root'
   - type: 'local'
     databases: 'all'
     user: 'all'
@@ -67,7 +67,20 @@ postgresql_config_pg_hba:
     method: 'md5'
 
 # User name maps
-postgresql_config_pg_ident: []
+postgresql_config_pg_ident:
+  - map_name: 'root'
+    system_username: 'root'
+    pg_username: 'postgres'
+  - map_name: 'root'
+    system_username: 'postgres'
+    pg_username: 'postgres'
 
 # Startup configuration
 postgresql_config_start: 'auto'
+
+
+# Databases and users management
+#------------------------------------------------------------------------------
+
+# Databases
+postgresql_databases: []

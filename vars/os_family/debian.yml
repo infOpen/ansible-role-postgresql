@@ -34,6 +34,8 @@ _postgresql_services:
 
 # Paths
 _postgresql_paths:
+  socket:
+    path: '/var/run/postgresql'
   config_files:
     environment:
       path: "/etc/postgresql/{{ postgresql_version }}/main/environment"

@@ -39,3 +39,16 @@
   tags:
     - 'role::postgresql'
     - 'role::postgresql::config'
+
+
+- name: 'HANDLERS | Force handlers exec  before databases and users management'
+  meta: 'flush_handlers'
+
+
+- name: 'CONFIG | Manage Postgresql databases tasks'
+  include: "{{ role_path }}/tasks/config/manage_databases.yml"
+  become: True
+  tags:
+    - 'role::postgresql'
+    - 'role::postgresql::config'
+    - 'role::postgresql::config::databases'

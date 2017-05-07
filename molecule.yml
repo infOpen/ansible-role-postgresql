@@ -6,7 +6,11 @@ ansible:
   raw_env_vars:
     ANSIBLE_NOCOWS: 1
   group_vars:
-    all: {}
+    all:
+      postgresql_databases:
+        - name: 'foo'
+        - name: 'bar'
+        - name: 'foobar'
 dependency:
   name: 'galaxy'
   requirements_file: 'tests/requirements.yml'
