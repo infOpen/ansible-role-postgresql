@@ -1,0 +1,12 @@
+---
+
+- name: 'Ensure PostgreSQL databases extensions are present'
+  postgresql_ext:
+    name: "{{ item.name }}"
+    db: "{{ item.db }}"
+    login_host: "{{ item.login_unix_socket | default(postgresql_paths.socket.path) }}"
+    login_password: "{{ item.login_password | default(omit) }}"
+    login_user: "{{ item.login_user | default(postgresql_system_user.name) }}"
+    port: "{{ item.port | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ postgresql_databases_extensions }}"

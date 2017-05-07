@@ -10,6 +10,7 @@ _postgresql_package_repositories:
   - repo: "deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release | lower }}-pgdg main"
 _postgresql_system_prerequisites:
   - name: 'ca-certificates'
+  - name: 'libpq-dev'
   - name: 'locales'
   - name: 'python-psycopg2'
 _postgresql_packages:

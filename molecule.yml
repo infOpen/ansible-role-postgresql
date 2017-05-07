@@ -11,6 +11,12 @@ ansible:
         - name: 'foo'
         - name: 'bar'
         - name: 'foobar'
+      postgresql_databases_extensions:
+        - name: 'cube'
+          db: 'foo'
+        - name: 'cube'
+          db: 'foobar'
+          state: 'absent'
       postgresql_users:
         - name: 'foo_user'
           db: 'foo'
