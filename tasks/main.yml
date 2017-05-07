@@ -25,12 +25,12 @@
     - 'role::postgresql::install'
 
 
-- name: 'CONFIG | Manage Postgresql users and groups configuration tasks'
-  include: "{{ role_path }}/tasks/config/manage_users.yml"
+- name: 'INSTALL | Manage Postgresql users and groups configuration tasks'
+  include: "{{ role_path }}/tasks/install/manage_system_users.yml"
   become: True
   tags:
     - 'role::postgresql'
-    - 'role::postgresql::config'
+    - 'role::postgresql::install'
 
 
 - name: 'CONFIG | Manage Postgresql configuration files tasks'

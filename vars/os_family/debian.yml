@@ -19,14 +19,14 @@ _postgresql_packages:
   - name: "postgresql-client-common"
   - name: "postgresql-contrib-{{ postgresql_version }}"
 
-# Users and groups management
-_postgresql_users:
-  - name: 'postgres'
-    group: 'postgres'
-    home: '/var/lib/postgresql'
-    shell: '/bin/bash'
-_postgresql_groups:
-  - name: 'postgres'
+# System user and group
+_postgresql_system_user:
+  name: 'postgres'
+  group: 'postgres'
+  home: '/var/lib/postgresql'
+  shell: '/bin/bash'
+_postgresql_system_group:
+  name: 'postgres'
 
 # Service management
 _postgresql_services:
@@ -37,31 +37,13 @@ _postgresql_paths:
   config_files:
     environment:
       path: "/etc/postgresql/{{ postgresql_version }}/main/environment"
-      owner: "{{ postgresql_users[0].name }}"
-      group: "{{ postgresql_groups[0].name }}"
-      mode: '0644'
     main:
       path: "/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf"
-      owner: "{{ postgresql_users[0].name }}"
-      group: "{{ postgresql_groups[0].name }}"
-      mode: '0644'
     pg_ctl:
       path: "/etc/postgresql/{{ postgresql_version }}/main/pg_ctl.conf"
-      owner: "{{ postgresql_users[0].name }}"
-      group: "{{ postgresql_groups[0].name }}"
-      mode: '0644'
     pg_hba:
       path: "/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf"
-      owner: "{{ postgresql_users[0].name }}"
-      group: "{{ postgresql_groups[0].name }}"
-      mode: '0640'
     pg_ident:
       path: "/etc/postgresql/{{ postgresql_version }}/main/pg_ident.conf"
-      owner: "{{ postgresql_users[0].name }}"
-      group: "{{ postgresql_groups[0].name }}"
-      mode: '0640'
     start:
       path: "/etc/postgresql/{{ postgresql_version }}/main/start.conf"
-      owner: "{{ postgresql_users[0].name }}"
-      group: "{{ postgresql_groups[0].name }}"
-      mode: '0644'

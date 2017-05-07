@@ -25,9 +25,9 @@ postgresql_paths: "{{ _postgresql_paths }}"
 # Service management
 postgresql_services: "{{ _postgresql_services }}"
 
-# User management
-postgresql_users: "{{ _postgresql_users }}"
-postgresql_groups: "{{ _postgresql_groups }}"
+# System user and group
+postgresql_system_user: "{{ _postgresql_system_user }}"
+postgresql_system_group: "{{ _postgresql_system_group }}"
 
 
 # PostgreSQL configuration

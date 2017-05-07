@@ -7,9 +7,9 @@
   template:
     src: "{{ role_path }}/templates/etc/common.conf.j2"
     dest: "{{ postgresql_paths.config_files.environment.path }}"
-    owner: "{{ postgresql_paths.config_files.environment.owner }}"
-    group: "{{ postgresql_paths.config_files.environment.group }}"
-    mode: "{{ postgresql_paths.config_files.environment.mode }}"
+    owner: "{{ postgresql_system_user.name }}"
+    group: "{{ postgresql_system_group.name }}"
+    mode: '0644'
   notify: 'HANDLER | PostgreSQL restart'
   vars:
     config_items: "{{ postgresql_config_environment }}"
@@ -19,9 +19,9 @@
   template:
     src: "{{ role_path }}/templates/etc/common.conf.j2"
     dest: "{{ postgresql_paths.config_files.main.path }}"
-    owner: "{{ postgresql_paths.config_files.main.owner }}"
-    group: "{{ postgresql_paths.config_files.main.group }}"
-    mode: "{{ postgresql_paths.config_files.main.mode }}"
+    owner: "{{ postgresql_system_user.name }}"
+    group: "{{ postgresql_system_group.name }}"
+    mode: '0644'
   notify: 'HANDLER | PostgreSQL restart'
   vars:
     config_items: "{{ postgresql_config_main }}"
@@ -31,9 +31,9 @@
   template:
     src: "{{ role_path }}/templates/etc/common.conf.j2"
     dest: "{{ postgresql_paths.config_files.pg_ctl.path }}"
-    owner: "{{ postgresql_paths.config_files.pg_ctl.owner }}"
-    group: "{{ postgresql_paths.config_files.pg_ctl.group }}"
-    mode: "{{ postgresql_paths.config_files.pg_ctl.mode }}"
+    owner: "{{ postgresql_system_user.name }}"
+    group: "{{ postgresql_system_group.name }}"
+    mode: '0644'
   notify: 'HANDLER | PostgreSQL restart'
   vars:
     config_items: "{{ postgresql_config_pg_ctl }}"
@@ -43,9 +43,9 @@
   template:
     src: "{{ role_path }}/templates/etc/start.conf.j2"
     dest: "{{ postgresql_paths.config_files.start.path }}"
-    owner: "{{ postgresql_paths.config_files.start.owner }}"
-    group: "{{ postgresql_paths.config_files.start.group }}"
-    mode: "{{ postgresql_paths.config_files.start.mode }}"
+    owner: "{{ postgresql_system_user.name }}"
+    group: "{{ postgresql_system_group.name }}"
+    mode: '0644'
   notify: 'HANDLER | PostgreSQL restart'
 
 
@@ -53,9 +53,9 @@
   template:
     src: "{{ role_path }}/templates/etc/pg_hba.conf.j2"
     dest: "{{ postgresql_paths.config_files.pg_hba.path }}"
-    owner: "{{ postgresql_paths.config_files.pg_hba.owner }}"
-    group: "{{ postgresql_paths.config_files.pg_hba.group }}"
-    mode: "{{ postgresql_paths.config_files.pg_hba.mode }}"
+    owner: "{{ postgresql_system_user.name }}"
+    group: "{{ postgresql_system_group.name }}"
+    mode: '0640'
   notify: 'HANDLER | PostgreSQL restart'
 
 
@@ -63,7 +63,7 @@
   template:
     src: "{{ role_path }}/templates/etc/pg_ident.conf.j2"
     dest: "{{ postgresql_paths.config_files.pg_ident.path }}"
-    owner: "{{ postgresql_paths.config_files.pg_ident.owner }}"
-    group: "{{ postgresql_paths.config_files.pg_ident.group }}"
-    mode: "{{ postgresql_paths.config_files.pg_ident.mode }}"
+    owner: "{{ postgresql_system_user.name }}"
+    group: "{{ postgresql_system_group.name }}"
+    mode: '0640'
   notify: 'HANDLER | PostgreSQL restart'
