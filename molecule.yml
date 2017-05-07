@@ -24,6 +24,12 @@ ansible:
           db: 'bar'
         - name: 'foobar_user'
           db: 'foobar'
+      postgresql_privs:
+        - db: 'bar'
+          admin_option: True
+          priv: 'ALL'
+          role: 'bar_user'
+          type: 'database'
 dependency:
   name: 'galaxy'
   requirements_file: 'tests/requirements.yml'

@@ -90,3 +90,6 @@ postgresql_databases_extensions: []
 
 # Users
 postgresql_users: []
+
+# Privileges
+postgresql_privs: []

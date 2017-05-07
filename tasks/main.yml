@@ -70,3 +70,12 @@
     - 'role::postgresql'
     - 'role::postgresql::config'
     - 'role::postgresql::config::users'
+
+
+- name: 'CONFIG | Manage Postgresql privileges tasks'
+  include: "{{ role_path }}/tasks/config/manage_privileges.yml"
+  become: True
+  tags:
+    - 'role::postgresql'
+    - 'role::postgresql::config'
+    - 'role::postgresql::config::privileges'
