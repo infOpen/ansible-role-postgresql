@@ -65,26 +65,3 @@ _postgresql_paths:
       owner: "{{ postgresql_users[0].name }}"
       group: "{{ postgresql_groups[0].name }}"
       mode: '0644'
-
-# Configuration
-_postgresql_config_pg_hba:
-  - type: 'local'
-    databases: 'all'
-    user: 'postgres'
-    address: ''
-    method: 'peer'
-  - type: 'local'
-    databases: 'all'
-    user: 'all'
-    address: ''
-    method: 'peer'
-  - type: 'host'
-    databases: 'all'
-    user: 'all'
-    address: '127.0.0.1/32'
-    method: 'md5'
-  - type: 'host'
-    databases: 'all'
-    user: 'all'
-    address: '::1/128'
-    method: 'md5'

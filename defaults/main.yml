@@ -44,7 +44,27 @@ postgresql_config_pg_ctl:
   pg_ctl_options: ''
 
 # Client authentication
-postgresql_config_pg_hba: "{{ _postgresql_config_pg_hba }}"
+postgresql_config_pg_hba:
+  - type: 'local'
+    databases: 'all'
+    user: 'postgres'
+    address: ''
+    method: 'peer'
+  - type: 'local'
+    databases: 'all'
+    user: 'all'
+    address: ''
+    method: 'peer'
+  - type: 'host'
+    databases: 'all'
+    user: 'all'
+    address: '127.0.0.1/32'
+    method: 'md5'
+  - type: 'host'
+    databases: 'all'
+    user: 'all'
+    address: '::1/128'
+    method: 'md5'
 
 # User name maps
 postgresql_config_pg_ident: []
