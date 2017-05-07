@@ -11,7 +11,7 @@
   with_items: "{{ postgresql_groups }}"
 
 
-- name: 'CONFIG | Manage PostgreSQL users'
+- name: 'CONFIG | Manage system users used by PostgreSQL'
   user:
     name: "{{ item.name }}"
     group: "{{ item.group }}"

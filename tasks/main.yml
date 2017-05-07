@@ -26,7 +26,7 @@
 
 
 - name: 'CONFIG | Manage Postgresql users and groups configuration tasks'
-  include: "{{ role_path }}/tasks/config/manage_user.yml"
+  include: "{{ role_path }}/tasks/config/manage_users.yml"
   become: True
   tags:
     - 'role::postgresql'
