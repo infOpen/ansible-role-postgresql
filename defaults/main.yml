@@ -84,3 +84,6 @@ postgresql_config_start: 'auto'
 
 # Databases
 postgresql_databases: []
+
+# Users
+postgresql_users: []

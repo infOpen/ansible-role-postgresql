@@ -11,6 +11,13 @@ ansible:
         - name: 'foo'
         - name: 'bar'
         - name: 'foobar'
+      postgresql_users:
+        - name: 'foo_user'
+          db: 'foo'
+        - name: 'bar_user'
+          db: 'bar'
+        - name: 'foobar_user'
+          db: 'foobar'
 dependency:
   name: 'galaxy'
   requirements_file: 'tests/requirements.yml'

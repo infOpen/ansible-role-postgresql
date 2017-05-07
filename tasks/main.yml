@@ -52,3 +52,12 @@
     - 'role::postgresql'
     - 'role::postgresql::config'
     - 'role::postgresql::config::databases'
+
+
+- name: 'CONFIG | Manage Postgresql users tasks'
+  include: "{{ role_path }}/tasks/config/manage_users.yml"
+  become: True
+  tags:
+    - 'role::postgresql'
+    - 'role::postgresql::config'
+    - 'role::postgresql::config::users'
