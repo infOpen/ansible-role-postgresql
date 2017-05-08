@@ -1,0 +1,52 @@
+---
+
+# Specific vars for Debian family
+#------------------------------------------------------------------------------
+
+# Package management
+_postgresql_gpg_keys:
+  - url: "https://www.postgresql.org/media/keys/ACCC4CF8.asc"
+_postgresql_package_repositories:
+  - repo: "deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release | lower }}-pgdg main"
+_postgresql_system_prerequisites:
+  - name: 'ca-certificates'
+  - name: 'libpq-dev'
+  - name: 'locales'
+  - name: 'python-psycopg2'
+_postgresql_packages:
+  - name: "postgresql-{{ postgresql_version }}"
+  - name: "postgresql-common"
+  - name: "postgresql-client-{{ postgresql_version }}"
+  - name: "postgresql-client-common"
+  - name: "postgresql-contrib-{{ postgresql_version }}"
+
+# System user and group
+_postgresql_system_user:
+  name: 'postgres'
+  group: 'postgres'
+  home: '/var/lib/postgresql'
+  shell: '/bin/bash'
+_postgresql_system_group:
+  name: 'postgres'
+
+# Service management
+_postgresql_services:
+  - name: 'postgresql'
+
+# Paths
+_postgresql_paths:
+  socket:
+    path: '/var/run/postgresql'
+  config_files:
+    environment:
+      path: "/etc/postgresql/{{ postgresql_version }}/main/environment"
+    main:
+      path: "/etc/postgresql/{{ postgresql_version }}/main/postgresql.conf"
+    pg_ctl:
+      path: "/etc/postgresql/{{ postgresql_version }}/main/pg_ctl.conf"
+    pg_hba:
+      path: "/etc/postgresql/{{ postgresql_version }}/main/pg_hba.conf"
+    pg_ident:
+      path: "/etc/postgresql/{{ postgresql_version }}/main/pg_ident.conf"
+    start:
+      path: "/etc/postgresql/{{ postgresql_version }}/main/start.conf"

@@ -1,0 +1,20 @@
+---
+
+# PostgreSQL users and groups tasks
+#------------------------------------------------------------------------------
+
+- name: 'CONFIG | Manage system group used by PostgreSQL'
+  group:
+    name: "{{ postgresql_system_group.name }}"
+    state: "{{ postgresql_system_group.state | default('present') }}"
+    gid: "{{ postgresql_system_group.gid | default(omit) }}"
+
+
+- name: 'CONFIG | Manage system users used by PostgreSQL'
+  user:
+    name: "{{ postgresql_system_user.name }}"
+    group: "{{ postgresql_system_user.group }}"
+    home: "{{ postgresql_system_user.home }}"
+    shell: "{{ postgresql_system_user.shell }}"
+    state: "{{ postgresql_system_user.state | default('present') }}"
+    uid: "{{ postgresql_system_user.uid | default(omit) }}"

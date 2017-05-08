@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+
+{% for item in postgresql_config_pg_ident %}
+{{ item.map_name }} {{ item.system_username }} {{ item.pg_username }}
+{% endfor %}
