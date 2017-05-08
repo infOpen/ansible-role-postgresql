@@ -60,9 +60,9 @@ def test_service(host):
         assert host.service(service).is_running
 
 
-def test_user(host):
+def test_system_user(host):
     """
-    Check if database user exists
+    Check if system user exists
     """
 
     if host.system_info.distribution in ('debian', 'ubuntu'):
@@ -100,3 +100,49 @@ def test_config_files(host):
             assert host.file(config_file).mode == 0o640
         else:
             assert host.file(config_file).mode == 0o644
+
+
+def test_databases_and_privileges(host):
+    """
+    Check databases exists
+    """
+
+    expected_databases = ['foo', 'bar', 'foobar']
+    existing_databases = host.check_output("psql -U postgres -c '\l'")
+
+    # Test databases
+    for expected_database in expected_databases:
+        assert ' {} '.format(expected_database) in existing_databases
+
+    # Test privileges
+    assert 'bar_user' in existing_databases
+    assert 'foo_user' not in existing_databases
+    assert 'foobar_user' not in existing_databases
+
+
+def test_databases_extensions(host):
+    """
+    Check databases extensions exists
+    """
+
+    databases = ['foo', 'bar', 'foobar']
+    psql_command = "psql -U postgres -c '\dx' {}"
+
+    for database in databases:
+        database_extensions = host.check_output(psql_command.format(database))
+        if database == 'foo':
+            assert ' cube ' in database_extensions
+        else:
+            assert ' cube ' not in database_extensions
+
+
+def test_users(host):
+    """
+    Check users exists
+    """
+
+    expected_users = ['foo_user', 'bar_user', 'foobar_user']
+    existing_users = host.check_output("psql -U postgres -c '\du'")
+
+    for expected_user in expected_users:
+        assert ' {} '.format(expected_user) in existing_users
