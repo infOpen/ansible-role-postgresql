@@ -6,9 +6,33 @@ ansible:
   raw_env_vars:
     ANSIBLE_NOCOWS: 1
   group_vars:
-    all: {}
+    all:
+      postgresql_databases:
+        - name: 'foo'
+        - name: 'bar'
+        - name: 'foobar'
+      postgresql_databases_extensions:
+        - name: 'cube'
+          db: 'foo'
+        - name: 'cube'
+          db: 'foobar'
+          state: 'absent'
+      postgresql_users:
+        - name: 'foo_user'
+          db: 'foo'
+        - name: 'bar_user'
+          db: 'bar'
+        - name: 'foobar_user'
+          db: 'foobar'
+      postgresql_privs:
+        - db: 'bar'
+          admin_option: True
+          priv: 'ALL'
+          role: 'bar_user'
+          type: 'database'
 dependency:
   name: 'galaxy'
+  requirements_file: 'tests/requirements.yml'
 driver:
   name: 'docker'
 docker:

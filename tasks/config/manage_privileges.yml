@@ -1,0 +1,19 @@
+---
+
+- name: 'Ensure PostgreSQL privileges are present'
+  postgresql_privs:
+    db: "{{ item.db }}"
+    role: "{{ item.role }}"
+    admin_option: "{{ item.admin_option | default(omit) }}"
+    obj: "{{ item.obj | default(omit) }}"
+    priv: "{{ item.priv | default(omit) }}"
+    schema: "{{ item.schema | default(omit) }}"
+    type: "{{ item.type | default(omit) }}"
+    login_host: "{{ item.login_host | default('localhost') }}"
+    login_password: "{{ item.login_password | default(omit) }}"
+    login_user: "{{ item.login_user | default(postgresql_system_user.name) }}"
+    login_unix_socket: "{{ item.login_unix_socket | default(postgresql_paths.socket.path) }}"
+    port: "{{ item.port | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ postgresql_privs }}"
+  no_log: True

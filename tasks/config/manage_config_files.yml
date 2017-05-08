@@ -1,0 +1,69 @@
+---
+
+# PostgreSQL configuration files management
+#------------------------------------------------------------------------------
+
+- name: 'CONFIG | Manage environment configuration file'
+  template:
+    src: "{{ role_path }}/templates/etc/common.conf.j2"
+    dest: "{{ postgresql_paths.config_files.environment.path }}"
+    owner: "{{ postgresql_system_user.name }}"
+    group: "{{ postgresql_system_group.name }}"
+    mode: '0644'
+  notify: 'HANDLER | PostgreSQL restart'
+  vars:
+    config_items: "{{ postgresql_config_environment }}"
+
+
+- name: 'CONFIG | Manage main configuration file'
+  template:
+    src: "{{ role_path }}/templates/etc/common.conf.j2"
+    dest: "{{ postgresql_paths.config_files.main.path }}"
+    owner: "{{ postgresql_system_user.name }}"
+    group: "{{ postgresql_system_group.name }}"
+    mode: '0644'
+  notify: 'HANDLER | PostgreSQL restart'
+  vars:
+    config_items: "{{ postgresql_config_main }}"
+
+
+- name: 'CONFIG | Manage pg_ctl configuration file'
+  template:
+    src: "{{ role_path }}/templates/etc/common.conf.j2"
+    dest: "{{ postgresql_paths.config_files.pg_ctl.path }}"
+    owner: "{{ postgresql_system_user.name }}"
+    group: "{{ postgresql_system_group.name }}"
+    mode: '0644'
+  notify: 'HANDLER | PostgreSQL restart'
+  vars:
+    config_items: "{{ postgresql_config_pg_ctl }}"
+
+
+- name: 'CONFIG | Manage start configuration file'
+  template:
+    src: "{{ role_path }}/templates/etc/start.conf.j2"
+    dest: "{{ postgresql_paths.config_files.start.path }}"
+    owner: "{{ postgresql_system_user.name }}"
+    group: "{{ postgresql_system_group.name }}"
+    mode: '0644'
+  notify: 'HANDLER | PostgreSQL restart'
+
+
+- name: 'CONFIG | Manage pg_hba configuration file'
+  template:
+    src: "{{ role_path }}/templates/etc/pg_hba.conf.j2"
+    dest: "{{ postgresql_paths.config_files.pg_hba.path }}"
+    owner: "{{ postgresql_system_user.name }}"
+    group: "{{ postgresql_system_group.name }}"
+    mode: '0640'
+  notify: 'HANDLER | PostgreSQL restart'
+
+
+- name: 'CONFIG | Manage pg_ident configuration file'
+  template:
+    src: "{{ role_path }}/templates/etc/pg_ident.conf.j2"
+    dest: "{{ postgresql_paths.config_files.pg_ident.path }}"
+    owner: "{{ postgresql_system_user.name }}"
+    group: "{{ postgresql_system_group.name }}"
+    mode: '0640'
+  notify: 'HANDLER | PostgreSQL restart'
